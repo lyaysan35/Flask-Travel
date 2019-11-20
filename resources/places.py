@@ -8,9 +8,9 @@ from playhouse.shortcuts import model_to_dict
 
 
 
-places = Blueprint('places', 'places')
+place = Blueprint('places', 'place')
 
-@places.route('/', methods=["GET"])
+@place.route('/', methods=["GET"])
 def get_all_places():
     ## find the dogs and change each one to a dictionary into a new array
     try:
@@ -21,7 +21,7 @@ def get_all_places():
         return jsonify(data={}, status={"code": 401, "message": "Error getting the resources"})
 
 
-@places.route('/places', methods=["POST"])
+@place.route('/', methods=["POST"])
 def create_places():
     ## see request payload anagolous to req.body in express
     payload = request.get_json()
@@ -38,7 +38,7 @@ def create_places():
 
 
 
-@places.route('/<id>', methods=["GET"])
+@place.route('/<id>', methods=["GET"])
 def get_one_places(id):
     print(id, 'reserved word?')
     place = models.Place.get_by_id(id)
@@ -47,7 +47,7 @@ def get_one_places(id):
 
 
 
-@places.route('/<id>', methods=["PUT"])
+@place.route('/<id>', methods=["PUT"])
 def update_places(id):
     payload = request.get_json()
     query = models.Place.update(**payload).where(models.Place.id==id)
@@ -56,7 +56,7 @@ def update_places(id):
 
 
 
-@places.route('/<id>', methods=["Delete"])
+@place.route('/<id>', methods=["Delete"])
 def delete_places(id):
     query = models.Place.delete().where(models.Place.id==id)
     query.execute() # you have to execute the update queries

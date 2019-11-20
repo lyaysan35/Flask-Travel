@@ -3,9 +3,6 @@ from peewee import *
 from flask_login import UserMixin
 DATABASE = SqliteDatabase('places.sqlite')
 
-DEBUG = True 
-PORT = 8000
-
 class Place(Model):
     city = CharField()
     country = CharField()

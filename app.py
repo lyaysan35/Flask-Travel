@@ -3,7 +3,7 @@ from flask import Flask, g # stands for global and we are setting up a global
 from flask_cors import CORS 
 from flask_login import LoginManager
 from resources.users import user
-from resources.places import places
+from resources.places import place
 import models 
 
 
@@ -38,12 +38,9 @@ def index():
  	return 'Hello'
 
 
-app.register_blueprint(places, url_prefix='/api/v1/places') # adding this line
-# app.register_blueprint(user,url_prefix='/user')
 
-
-CORS(places, origins=['http://localhost:3000'], supports_credentials=True) # adding this line
-app.register_blueprint(places, url_prefix='/api/v1/places') # adding this line
+CORS(place, origins=['http://localhost:3000'], supports_credentials=True) # adding this line
+app.register_blueprint(place, url_prefix='/api/v1/places') # adding this line
 
 CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
 app.register_blueprint(user, url_prefix='/users')
@@ -54,5 +51,4 @@ app.register_blueprint(user, url_prefix='/users')
 if __name__ == '__main__':
     print('tables connected')
     models.initialize()
-    app.run(debug=DEBUG, port=PORT)
     app.run(debug=DEBUG, port=PORT)
