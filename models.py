@@ -19,7 +19,7 @@ class Place(Model):
 
 class User(UserMixin,Model):
    # id = PrimaryKeyField(null=False)
-   username = CharField(unique=True)
+   # username = CharField(unique=True)
    email = CharField(unique=True)
    password = CharField()
 

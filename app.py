@@ -15,7 +15,18 @@ PORT=8000
 
 app = Flask(__name__)
 
+app.secret_key = 'xxxxyyi0oiu gew;i gkeirg;iqwtiq;hreirasdfjlksadlkfjalsdjzzzzz'
+login_manager = LoginManager()
+login_manager.init_app(app)
 
+# Decorator that will load the user object whenver we access the session
+# by import currect_user from flask_login
+@login_manager.user_loader
+def load_user(user_id):
+    try:
+        return models.User.get(models.User.id == user_id)
+    except models.DoesNotExist:
+        return None
 
 
 @app.before_request
