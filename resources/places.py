@@ -42,8 +42,8 @@ def create_places():
 def get_one_places(id):
     print(id, 'reserved word?')
     place = models.Place.get_by_id(id)
-    print(places.__dict__)
-    return jsonify(data=model_to_dict(places), status={"code": 200, "message": "Success"})
+    print(place.__dict__)
+    return jsonify(data=model_to_dict(place), status={"code": 200, "message": "Success"})
 
 
 
