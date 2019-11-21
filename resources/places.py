@@ -14,9 +14,9 @@ place = Blueprint('places', 'place')
 def get_all_places():
     ## find the dogs and change each one to a dictionary into a new array
     try:
-        places = [model_to_dict(places) for place in models.Place.select()]
+        places = [model_to_dict(place) for place in models.Place.select()]
         print(places)
-        return jsonify(data=place, status={"code": 200, "message": "Success"})
+        return jsonify(data=places, status={"code": 200, "message": "Success"})
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "Error getting the resources"})
 
