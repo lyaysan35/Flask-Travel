@@ -49,7 +49,8 @@ def get_one_places(id):
 
 @place.route('/<id>', methods=["PUT"])
 def update_places(id):
-    payload = request.get_json()
+    payload = request.json
+    print(payload, 'payload')
     query = models.Place.update(**payload).where(models.Place.id==id)
     query.execute() # you have to execute the update queries
     return jsonify(data=model_to_dict(models.Place.get_by_id(id)), status={"code": 200, "message": "resource updated successfully"})
