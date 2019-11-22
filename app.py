@@ -47,14 +47,14 @@ def after_request(response):
 
 @app.route('/')
 def index():
- 	return 'Hello'
+    return 'Hello'
 
 
 
-CORS(place, origins=['http://localhost:3000', 'https://dashboard.heroku.com/apps/travelrussia'], supports_credentials=True) # adding this line
+CORS(place, origins=['http://localhost:3000', 'https://react-travel-lyaysan-2.herokuapp.com'], supports_credentials=True) # adding this line
 app.register_blueprint(place, url_prefix='/api/v1/places') # adding this line
 
-CORS(user, origins=['http://localhost:3000', 'https://dashboard.heroku.com/apps/travelrussia'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000', 'https://react-travel-lyaysan-2.herokuapp.com'], supports_credentials=True)
 app.register_blueprint(user, url_prefix='/users')
 
 if 'ON_HEROKU' in os.environ:

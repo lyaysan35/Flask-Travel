@@ -6,10 +6,9 @@ from playhouse.db_url import connect
 
 if 'ON_HEROKU' in os.environ:
     DATABASE = connect(os.environ.get('DATABASE_URL'))
-    
-else:
 
-DATABASE = SqliteDatabase('places.sqlite')
+else:
+    DATABASE = SqliteDatabase('places.sqlite')
 
 class Place(Model):
     city = CharField()
@@ -20,7 +19,7 @@ class Place(Model):
 
     class Meta: #special constructor that give our class instructions
     # telling our model to connect to a specific db
-    	database = DATABASE
+        database = DATABASE
 
 
 
@@ -34,8 +33,8 @@ class User(UserMixin,Model):
    # def__repr__(self):
    # return '<User: {}, id: {}>'. format(self.email, self.id
    class Meta:
-   		database = DATABASE 
-	# db_table = 'users'  
+        database = DATABASE 
+    # db_table = 'users'  
 
 
 
@@ -58,5 +57,5 @@ def initialize():
 
 
 # if __name__ == '__main__':
-# 	models.initialize() #call f() that creates our table
-# 	app.run(debug=DEBUG, port=PORT)
+#   models.initialize() #call f() that creates our table
+#   app.run(debug=DEBUG, port=PORT)
