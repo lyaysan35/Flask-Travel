@@ -1,3 +1,4 @@
+import os
 from flask import Flask, g # stands for global and we are setting up a global 
 # access to our database throughout the app
 from flask_cors import CORS 
@@ -50,13 +51,15 @@ def index():
 
 
 
-CORS(place, origins=['http://localhost:3000'], supports_credentials=True) # adding this line
+CORS(place, origins=['http://localhost:3000', 'https://dashboard.heroku.com/apps/travelrussia'], supports_credentials=True) # adding this line
 app.register_blueprint(place, url_prefix='/api/v1/places') # adding this line
 
-CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000', 'https://dashboard.heroku.com/apps/travelrussia'], supports_credentials=True)
 app.register_blueprint(user, url_prefix='/users')
 
-
+if 'ON_HEROKU' in os.environ:
+    print('hitting')
+    models.initialize()
 
 
 if __name__ == '__main__':
