@@ -5,10 +5,9 @@ from flask_login import UserMixin
 from playhouse.db_url import connect
 
 if 'ON_HEROKU' in os.environ:
-    DATABASE = connect(os.environ.get('DATABASE_URL'))
-
+  DATABASE = connect(os.environ.get('DATABASE_URL'))
 else:
-    DATABASE = SqliteDatabase('places.sqlite')
+  DATABASE = SqliteDatabase('places.sqlite')
 
 class Place(Model):
     city = CharField()
@@ -16,6 +15,7 @@ class Place(Model):
     text = CharField()
     image = CharField()
     created_at = DateTimeField(default=datetime.datetime.now)
+    userId = CharField()
 
     class Meta: #special constructor that give our class instructions
     # telling our model to connect to a specific db
