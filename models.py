@@ -12,7 +12,7 @@ else:
 class Place(Model):
     city = CharField()
     country = CharField()
-    text = TextField()
+    text = TextField(db.String(2000))
     image = CharField()
     created_at = DateTimeField(default=datetime.datetime.now)
     userId = CharField()
