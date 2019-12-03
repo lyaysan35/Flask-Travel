@@ -12,7 +12,7 @@ place = Blueprint('places', 'place')
 
 @place.route('/', methods=["GET"])
 def get_all_places():
-    ## find the dogs and change each one to a dictionary into a new array
+    ## find the places and change each one to a dictionary into a new array
     try:
         places = [model_to_dict(place) for place in models.Place.select()]
         print(places)
